@@ -24,6 +24,20 @@ export class App extends Component {
     filter: '',
   };
 
+  componentDidMount() {
+    const myContacts = JSON.parse(localStorage.getItem('contacts'));
+    if (myContacts) {
+      this.setState({ contacts: myContacts });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { contacts } = this.state;
+    if (contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(contacts));
+    }
+  };
+
   handleSubmit = (name, number) => {
     const { contacts } = this.state;
     const checkContact = contacts.some(
@@ -95,7 +109,7 @@ export class App extends Component {
             Please add new contact.
           </WarningMessage>
         )}
-        
+
         <GlobalStyle />
         <ToastContainer autoClose={5000} />
       </div>
