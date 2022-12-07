@@ -1,6 +1,8 @@
 import propTypes from 'prop-types';
 import { ContactListStyle, ContactItem, ButtonForDelete } from 'components/ContactList/ContactList.styled';
 
+import { ReactComponent as DeletIcon } from '../Icon/remove-user.svg';
+
 
 export const ContactList = ({ contacts, handleDelete }) => (
   <div>
@@ -12,8 +14,9 @@ export const ContactList = ({ contacts, handleDelete }) => (
             type="button"
             onClick={() => handleDelete(contact.id)}
           >
-            Delete
+            <DeletIcon width="32" heigth="32" />
           </ButtonForDelete>
+          
         </ContactItem>
       ))}
     </ContactListStyle>
